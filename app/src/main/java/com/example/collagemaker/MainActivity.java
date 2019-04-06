@@ -16,10 +16,9 @@ public class MainActivity extends FragmentActivity{
     /** Check if this device has a camera */
     private boolean checkCameraHardware(Context context) {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-            // this device has a camera
+
             return true;
         } else {
-            // no camera on this device
             return false;
         }
     }
