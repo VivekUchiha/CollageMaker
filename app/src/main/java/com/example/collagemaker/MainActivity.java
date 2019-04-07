@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> supplierNames,suppliernames2;
     VerticalViewPager verticalViewPager;
     VerticalAdapter verticalAdapter;
+    Button generatebutton;
 
 
     @Override
@@ -28,11 +29,20 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         supplierNames = Arrays.asList("", "", "");
         suppliernames2 = Arrays.asList("", "", "");
+        generatebutton=(Button)findViewById(R.id.generatebutton);
+        generatebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateimage();
+            }
+        });
         verticalViewPager = (VerticalViewPager)findViewById(R.id.verti) ;
 
 
         verticalAdapter = new VerticalAdapter(supplierNames,suppliernames2,this);
         verticalViewPager.setAdapter(verticalAdapter);
+
+
 
     }
 
@@ -48,6 +58,22 @@ public class MainActivity extends AppCompatActivity {
         verticalViewPager.setAdapter(verticalAdapter);
 
     }
+
+    void generateimage(){
+        Intent intent = new Intent(this, CanvasActivity.class);
+        intent.putExtra("11",supplierNames.get(0));
+        intent.putExtra("12",supplierNames.get(1));
+        intent.putExtra("13",supplierNames.get(2));
+        intent.putExtra("21",suppliernames2.get(0));
+        intent.putExtra("22",suppliernames2.get(1));
+        intent.putExtra("23",suppliernames2.get(2));
+        startActivity(intent);
+
+
+
+    }
+
+
 
 
 
