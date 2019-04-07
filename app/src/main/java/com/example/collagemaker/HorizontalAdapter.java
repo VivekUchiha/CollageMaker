@@ -15,6 +15,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -52,8 +53,10 @@ public class HorizontalAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = mLayoutInflater.inflate(R.layout.layimage, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imagsss);
+        Button button = (Button) itemView.findViewById(R.id.funzz);
+
         if(mResources.get(position)==""){
-            imageView.setImageResource(R.drawable.firefo);
+            imageView.setImageResource(R.drawable.addimage);
         }
         else {
             File imgFile = new  File(mResources.get(position));
@@ -66,11 +69,11 @@ public class HorizontalAdapter extends PagerAdapter {
 
                     imageView.setImageBitmap(myBitmap);
                 }
-                else imageView.setImageResource(R.drawable.firefo);
+                else imageView.setImageResource(R.drawable.addimage);
             }
 
         }
-        imageView.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();

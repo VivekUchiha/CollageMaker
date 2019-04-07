@@ -13,9 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<String> supplierNames;
-    HorizontalAdapter horizontalAdapter;
-    ViewPager viewPager;
+    List<String> supplierNames,suppliernames2;
+    VerticalViewPager verticalViewPager;
+    VerticalAdapter verticalAdapter;
 
 
     @Override
@@ -27,23 +27,25 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         supplierNames = Arrays.asList("", "", "");
+        suppliernames2 = Arrays.asList("", "", "");
+        verticalViewPager = (VerticalViewPager)findViewById(R.id.verti) ;
 
-        viewPager = (ViewPager) findViewById(R.id.horiViewPager);
-        horizontalAdapter = new HorizontalAdapter(supplierNames,this);
-        viewPager.setAdapter(horizontalAdapter);
 
+        verticalAdapter = new VerticalAdapter(supplierNames,suppliernames2,this);
+        verticalViewPager.setAdapter(verticalAdapter);
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        supplierNames=horizontalAdapter.mResources;
+        supplierNames=verticalAdapter.horizontalAdapter1.mResources;
+        suppliernames2=verticalAdapter.horizontalAdapter2.mResources;
        update();
     }
     void update(){
-        horizontalAdapter = new HorizontalAdapter(supplierNames,this);
-        viewPager.setAdapter(horizontalAdapter);
+        verticalAdapter = new VerticalAdapter(supplierNames,suppliernames2,this);
+        verticalViewPager.setAdapter(verticalAdapter);
 
     }
 

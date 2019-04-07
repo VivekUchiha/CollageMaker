@@ -2,15 +2,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <com.example.collagemaker.VerticalViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/verti"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"></com.example.collagemaker.VerticalViewPager>
-
+        android:id="@+id/horiViewPager"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 
 
 
