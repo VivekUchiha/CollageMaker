@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 /**
@@ -29,7 +30,7 @@ public class CameraFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String TAG = "camerafragment";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -46,7 +47,7 @@ public class CameraFragment extends Fragment {
     public static CameraFragment newInstance(String param1, String param2) {
         CameraFragment fragment = new CameraFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(TAG, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -68,10 +69,11 @@ public class CameraFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(TAG);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         Log.d("hi","calledoncreate");
+
 
 
 
@@ -82,6 +84,8 @@ public class CameraFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("ha","calledoncreateview");
+
 
         return inflater.inflate(R.layout.fragment_camera, container, false);
 
@@ -97,9 +101,11 @@ public class CameraFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.d("hi","calledonViewCreated");
+
         mCamera = getCameraInstance();
         mCamera.setDisplayOrientation(90);
-        Log.d("hi","calledonViewCreated");
+
         mPreview = new CameraPreview(getContext(), mCamera);
         FrameLayout preview = (FrameLayout)getView().findViewById(R.id.camera_preview);
         Button button = (Button)getView().findViewById(R.id.capture);
@@ -110,8 +116,19 @@ public class CameraFragment extends Fragment {
 
 
 
+
+    @Override
+    public void onPause() {
+        Log.d("hi","onpause");
+        super.onPause();
+
+
+    }
+
     @Override
     public void onDetach() {
+        Log.d("hi","ondetach");
+        mCamera.release();
         super.onDetach();
         mListener = null;
     }
